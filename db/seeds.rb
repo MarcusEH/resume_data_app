@@ -24,9 +24,9 @@
 end
 
 20.times do
-  Experience.create ([
+  Experience.create([
   {student_id: rand(1..10),
-  start_date: Time.now, #TODO
+  start_date: Time.now,
   end_date: Time.now,
   job_title: Faker::Job.title,
   company_name: Faker::Company.name,
@@ -35,7 +35,7 @@ end
 end
 
 20.times do
-  Education.create ([
+  Education.create([
   {student_id: rand(1..10),
   start_date: Time.now,
   end_date: Time.now,
@@ -46,14 +46,14 @@ end
 end
 
 20.times do
-  Skill.create ([
+  Skill.create([
     {student_id: rand(1..10),
     skill_name: 'ruby'}
   ])
 end
 
 20.times do
-  Capstone.create ([
+  Capstone.create([
     {student_id: rand(1..10),
     name: Faker::Company.name,
     description: Faker::Company.catch_phrase,

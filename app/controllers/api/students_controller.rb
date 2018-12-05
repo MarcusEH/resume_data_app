@@ -13,12 +13,12 @@ class Api::StudentsController < ApplicationController
   def show
     if current_user
       puts "current user: #{current_user}"
-      @student = Student.find_by(student_id: current_user.student_id)
+      @student = Student.find_by(id: current_user.student_id)
       puts "student: #{@student}"
       render json: @student
     else
       puts "no current user / CU failed"
-      @student = Student.find_by(student_id: params[:student_id])
+      @student = Student.find_by(id: params[:id])
       render json: @student
     end
   end
