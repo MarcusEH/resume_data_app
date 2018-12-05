@@ -13,59 +13,64 @@ Skill.destroy_all
 Capstone.destroy_all
 User.destroy_all
 
+
 10.times do 
   lotr = Faker::Movies::LordOfTheRings.character
-  Student.create!      ([ 
+  Student.create!(
     {first_name: lotr, 
     last_name: Faker::Name.first_name, 
     email: Faker::Internet.email,
     phone_number: Faker::PhoneNumber.cell_phone,
-    short_bio: Faker::Overwatch.quote,
+    short_bio: Faker::Games::Overwatch.quote,
     linkedin_url: 'www.linked.com/users/'+lotr,
     twitter_handle: '@'+lotr,
     personal_blog_url: 'www.medium.com/'+lotr,
     online_resume_url: 'www.resume.com/' + lotr,
     github_url: 'www.github.com/u/' + lotr,
     photo_url: 'www.imgur.com/sample.jpg'}
-])
+)
 end
 
-puts "before experience"
+User.create!(student_id: Student.first.id, email: 'test@test.com', password: 'password')
+User.create!(student_id: Student.second.id, email: 'test2@test.com', password: 'password')
+
 
 20.times do
-  Experience.create!([
+  Experience.create!(
   {student_id: Student.all.sample.id,
   start_date: Time.now,
   end_date: Time.now,
   job_title: Faker::Job.title,
   company_name: Faker::Company.name,
   details: Faker::Company.catch_phrase}
-])
+)
 end
 
 20.times do
-  Education.create([
+  Education.create!(
   {student_id: Student.all.sample.id,
   start_date: Time.now,
   end_date: Time.now,
   degree: Faker::Job.title,
   university_name: Faker::Company.name,
   details: Faker::Company.catch_phrase}
-])
+)
 end
 
 20.times do
-  Skill.create([
+  Skill.create!(
     {student_id: Student.all.sample.id,
     skill_name: 'ruby'}
-  ])
+  )
 end
 
 20.times do
-  Capstone.create([
+  Capstone.create!(
     {student_id: Student.all.sample.id,
     name: Faker::Company.name,
     description: Faker::Company.catch_phrase,
     url: 'www.'+Faker::Company.name+'.com'}
-  ])
+  )
 end
+
+
