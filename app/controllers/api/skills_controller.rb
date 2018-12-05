@@ -1,6 +1,7 @@
 class Api::SkillsController < ApplicationController
+  before_action :authenticate_user
   def index
-    @skills = Skill.all
+    @skills = Skill.where(student_id: current_user.id)
     render "index.json.jbuilder"
   end
 

@@ -1,6 +1,7 @@
 class Api::ExperiencesController < ApplicationController
+  before_action :authenticate_user
   def index
-    @experiences = Experience.all
+    @experiences = Experience.where(student_id: current_user.id)
     render "index.json.jbuilder"
   end
 
