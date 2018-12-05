@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   namespace :api do
     resources :students, :skills, :experiences, :educations, :capstones
     post "/users" => "users#create"
+    post "/sessions" => "sessions#create"
   end
 end
