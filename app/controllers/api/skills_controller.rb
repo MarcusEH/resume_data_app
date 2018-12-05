@@ -1,5 +1,5 @@
 class Api::SkillsController < ApplicationController
-    def index
+  def index
     @skills = Skill.all
     render "index.json.jbuilder"
   end
