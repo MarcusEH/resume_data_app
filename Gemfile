@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
+gem 'rack-cors', require: 'rack/cors'
+
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'

@@ -1,4 +1,4 @@
-json.student_id @experience.student_id
-json.name @experience.name
-json.description @experience.description
-json.url @experience.url
+json.student_id @capstone.student_id
+json.name @capstone.name
+json.description @capstone.description
+json.url @capstone.url
