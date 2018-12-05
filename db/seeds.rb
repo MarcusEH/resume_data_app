@@ -6,9 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Student.destroy_all
+Experience.destroy_all
+Education.destroy_all
+Skill.destroy_all
+Capstone.destroy_all
+User.destroy_all
+
 10.times do 
   lotr = Faker::Movies::LordOfTheRings.character
-  Student.create([ 
+  Student.create!      ([ 
     {first_name: lotr, 
     last_name: Faker::Name.first_name, 
     email: Faker::Internet.email,
@@ -24,8 +31,8 @@
 end
 
 20.times do
-  Experience.create([
-  {student_id: rand(1..10),
+  Experience.create!([
+  {student_id: Student.all.sample,
   start_date: Time.now,
   end_date: Time.now,
   job_title: Faker::Job.title,
@@ -36,7 +43,7 @@ end
 
 20.times do
   Education.create([
-  {student_id: rand(1..10),
+  {student_id: Student.all.sample,
   start_date: Time.now,
   end_date: Time.now,
   degree: Faker::Job.title,
@@ -47,14 +54,14 @@ end
 
 20.times do
   Skill.create([
-    {student_id: rand(1..10),
+    {student_id: Student.all.sample,
     skill_name: 'ruby'}
   ])
 end
 
 20.times do
   Capstone.create([
-    {student_id: rand(1..10),
+    {student_id: Student.all.sample,
     name: Faker::Company.name,
     description: Faker::Company.catch_phrase,
     url: 'www.'+Faker::Company.name+'.com'}
