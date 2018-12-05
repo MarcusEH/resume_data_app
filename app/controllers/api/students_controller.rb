@@ -1,5 +1,5 @@
 class Api::StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user, except: [:index]
      
   # GET /students
   # GET /students.json
@@ -77,9 +77,9 @@ class Api::StudentsController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_student
-    @student = Student.find(params[:id])
-  end
+  # def set_student
+  #   @student = Student.find(params[:id])
+  # end
 
   # # Never trust parameters from the scary internet, only allow the white list through.
   # def student_params
