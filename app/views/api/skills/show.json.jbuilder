@@ -1,2 +1,2 @@
-json.student_id @experience.student_id
-json.skill_name @experience.skill_name
+json.student_id @skill.student_id
+json.skill_name @skill.skill_name
