@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   # verb "/urls" => "namespace/controllers#action"
   namespace :api do
     resources :students, :skills, :experiences, :educations, :capstones
+    post "/users" => "users#create"
   end
 end
