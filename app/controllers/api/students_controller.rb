@@ -12,7 +12,7 @@ class Api::StudentsController < ApplicationController
   # GET /students/1.json
   def show
     if current_user
-      puts "\n\n\tcurrent user: #{current_user}\n\n"
+      puts "\n\n\tcurrent user: #{current_user} #{current_user.email}\n\n"
       @student = Student.find_by(id: current_user.student_id)
       puts "student: #{@student}"
       render json: @student
@@ -35,56 +35,42 @@ class Api::StudentsController < ApplicationController
   # POST /students
   # POST /students.json
   def create
-    @student = Student.new(student_params)
-    
-    respond_to do |format|
-       if @student.save
-          format.html { redirect_to @student, notice: 'Student was successfully created.' }
-          format.json { render :show, status: :created, location: @student }
-       else
-          format.html { render :new }
-          format.json { render json: @student.errors, status: :unprocessable_entity }
-       end
-    end
-    
+    @student = Student.new(
+      first_name: params[:first_name] || "",
+      last_name: params[:last_name] || "",
+      email: params[:email] || current_user.email || "",
+      phone_number: params[:phone_number] || "",
+      short_bio: params[:short_bio] || "",
+      linkedin_url: params[:linkedin_url] || "",
+      twitter_handle: params[:twitter_handle] || "",
+      personal_blog_url: params[:personal_blog_url] || "",
+      online_resume_url: params[:online_resume_url] || "",
+      github_url: params[:github_url] || "",
+      photo_url: params[:photo_url] || ""
+      )     
+    if @student.save
+      render json: @student, status: 201
+    end 
   end
 
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
-    respond_to do |format|
-       if @student.update(student_params)
-          format.html { redirect_to @student, notice: 'Student was successfully updated.' }
-          format.json { render :show, status: :ok, location: @student }
-       else
-          format.html { render :edit }
-          format.json { render json: @student.errors, status: :unprocessable_entity }
-       end
-    end
-    
+    student = Student.find_by(id: params[:id])
+    student.update(
+      first_name: params[:first_name] || student.first_name || "",
+      last_name: params[:last_name] || student.last_name || "",
+      email: params[:email] || student.email || "",
+      phone_number: params[:phone_number] || student.phone_number || "",
+      short_bio: params[:short_bio] || student.short_bio || "",
+      linkedin_url: params[:linkedin_url] || student.linkedin_url || "",
+      twitter_handle: params[:twitter_handle] || student.twitter_handle || "",
+      personal_blog_url: params[:personal_blog_url] || student.personal_blog_url || "",
+      online_resume_url: params[:online_resume_url] || student.online_resume_url || "",
+      github_url: params[:github_url] || student.github_url || "",
+      photo_url: params[:photo_url] || student.photo_url || ""
+      )      
   end
-
-  # DELETE /students/1
-  # DELETE /students/1.json
-  # def destroy
-  #   @student.destroy
-  #      respond_to do |format|
-  #      format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
-  #      format.json { head :no_content }
-  #   end
-  # end
-
-  private
-
-  # Use callbacks to share common setup or constraints between actions.
-  # def set_student
-  #   @student = Student.find(params[:id])
-  # end
-
-  # # Never trust parameters from the scary internet, only allow the white list through.
-  # def student_params
-  #   params.require(:student).permit(:tittle, :instructions)
-  # end
 
 end
 
